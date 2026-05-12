@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CEO Cafe | 别让这一杯 3-in-1，偷偷透支你的健康！</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#3e2723",
+                    "secondary-container": "#fed65b",
+                    "surface-container-high": "#e8e8e8",
+                    "background": "#f9f9f9",
+                    "outline": "#827472",
+                    "on-primary-fixed": "#2b1613",
+                    "primary": "#271310",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#1a1c1c",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#d3c3c0",
+                    "surface-bright": "#f9f9f9",
+                    "surface-dim": "#dadada",
+                    "inverse-surface": "#2f3131",
+                    "on-surface": "#1a1c1c",
+                    "primary-fixed-dim": "#e3beb8",
+                    "tertiary-container": "#003508",
+                    "on-tertiary-container": "#56a554",
+                    "on-surface-variant": "#504442",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#241a00",
+                    "on-error-container": "#93000a",
+                    "secondary": "#735c00",
+                    "inverse-primary": "#e3beb8",
+                    "surface-container-highest": "#e2e2e2",
+                    "inverse-on-surface": "#f1f1f1",
+                    "secondary-fixed-dim": "#e9c349",
+                    "on-tertiary-fixed": "#002204",
+                    "surface-variant": "#e2e2e2",
+                    "surface-tint": "#745853",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#a3f69c",
+                    "tertiary-fixed-dim": "#88d982",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#ffe088",
+                    "on-primary-fixed-variant": "#5b403c",
+                    "on-primary-container": "#ae8d87",
+                    "on-secondary-fixed-variant": "#574500",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#ffdad4",
+                    "surface-container": "#eeeeee",
+                    "on-tertiary-fixed-variant": "#005312",
+                    "tertiary": "#001d03",
+                    "on-secondary-container": "#745c00",
+                    "surface-container-low": "#f3f3f3",
+                    "surface": "#f9f9f9",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "headline-xl": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .cta-glow {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        .ambient-shadow {
+            box-shadow: 0 4px 20px rgba(62, 39, 35, 0.08);
+        }
+        .bento-card {
+            transition: transform 0.3s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+        }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopNavBar -->
+<header class="bg-surface/90 backdrop-blur-md border-b border-outline-variant/30 shadow-sm docked full-width top-0 sticky z-50">
+<nav class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="font-headline-md text-headline-md font-bold text-primary">CEO Cafe</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-bold text-label-bold" href="#benefits">Benefits</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-bold text-label-bold" href="#science">The Science</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-bold text-label-bold" href="https://wa.link/cpn7fy" target="_blank">Pricing</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-bold text-label-bold" href="#reviews">Reviews</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-bold text-label-bold" href="#faq">FAQ</a>
+</div>
+<a class="bg-secondary text-white px-8 py-3 rounded-full font-label-bold text-label-bold hover:opacity-90 transition-all active:scale-95 duration-100" href="https://wa.link/cpn7fy" target="_blank">Order Now</a>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[819px] flex items-center overflow-hidden bg-surface-bright py-20 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div class="space-y-8 z-10">
+<h1 class="font-headline-xl text-headline-xl text-primary leading-tight">别让这一杯 3-in-1，<br/><span class="text-secondary">偷偷透支你的健康！</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        专为大马咖啡爱好者打造。保留你最爱的香醇口感，剔除有害负担。加入勇健极品灵芝，让你在提神的同时，给身体多一层保护。
+                    </p>
+<div class="pt-4">
+<a class="cta-glow inline-flex items-center gap-3 bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white px-10 py-5 rounded-full font-label-bold text-label-bold text-lg hover:scale-105 transition-transform duration-300" href="https://wa.link/cpn7fy" target="_blank">
+                            【买一送一】立即领取我的健康咖啡组合
+                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 relative">
+<div class="rounded-2xl overflow-hidden aspect-[4/5] ambient-shadow">
+<img class="w-full h-full object-cover" data-alt="A premium close-up shot of CEO Cafe packaging next to a steaming porcelain cup of rich coffee. The background is a clean marble surface with soft golden lighting, evoking an elite lifestyle brand. High-end product photography style with warm, indulgent tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGEiruJldhxRnfQTD1xOiVRSxoY94tTNx9tpijq5cssiRpEfAga6QCLUQxnSD8IxhBcfGdibiYdhGecpogzfYRiWVAF4bDXWVBwhqrdMoUuC6uVoj1I2ARDpYCPYVs7Ob-4T2xyuRUoB332jW-DJKy5CZJ1x6Q5Abx5md2UDPzF-gk13WkSDoWyaqORZ0Z9YQ0u6k1scQMb5WtRiHLVTsH60s5m9ulm43npoQ-vPIlH0WvVLP-sIP_00kWJTQI0YXBhsbT8kjsLqMY"/>
+</div>
+<div class="rounded-2xl overflow-hidden aspect-[4/5] ambient-shadow mt-12">
+<img class="w-full h-full object-cover" data-alt="A professional medical expert in a crisp white lab coat smiling confidently. The setting is a minimalist, modern clinical office with soft daylight and warm wood textures. The aesthetic is authoritative yet welcoming, bridging medical science with high-end wellness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx5xLaCzp8Dip80Ib279XDrBLW5rv-SOpwv5B547RklvXVG9hTD5Q7ZaqU9K8uzX8VwTHD1eSLvfFRdT0vRloHiU0Qw1Toq6CdIYv_DsnfK_dcCRvXLccweL_rQu8KR-15PN8ZRUd-UQGLxtgW2U7X1rQX2HOePFHc0xh_JFETtP7GFSZJAM9O3p-D4SVClTC3O3KWc01mU9GGsQ08C81T0g9i14zHqkOFaOFJC12m74at3jWKXgDMSXRWXKGFqNmt6gVa8YxfLUOj"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Pain Points Section -->
+<section class="py-24 bg-primary text-white">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg mb-6">你喝的是提神，还是“慢性隐患”？</h2>
+<div class="w-24 h-1 bg-secondary-fixed mx-auto"></div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-primary-container p-10 rounded-2xl border border-outline/20 space-y-4">
+<span class="material-symbols-outlined text-error text-4xl" data-icon="dangerous">dangerous</span>
+<h3 class="font-headline-md text-headline-md text-secondary-fixed">❌ 传统 3 合 1</h3>
+<p class="text-on-primary-container/80 text-body-md">充满了反式脂肪（植脂末）和劣质糖分，长期喝会导致三高。</p>
+</div>
+<div class="bg-primary-container p-10 rounded-2xl border border-outline/20 space-y-4">
+<span class="material-symbols-outlined text-error text-4xl" data-icon="monitor_heart">monitor_heart</span>
+<h3 class="font-headline-md text-headline-md text-secondary-fixed">❌ 心悸手抖</h3>
+<p class="text-on-primary-container/80 text-body-md">很多普通咖啡喝完后心跳加速，晚上睡不着。</p>
+</div>
+<div class="bg-primary-container p-10 rounded-2xl border border-outline/20 space-y-4">
+<span class="material-symbols-outlined text-error text-4xl" data-icon="battery_alert">battery_alert</span>
+<h3 class="font-headline-md text-headline-md text-secondary-fixed">❌ 空有咖啡因</h3>
+<p class="text-on-primary-container/80 text-body-md">只是短暂刺激神经，却没给身体提供能量。</p>
+</div>
+</div>
+</section>
+<!-- Solution Section -->
+<section class="py-24 bg-white" id="benefits">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-8">
+<div class="inline-block bg-tertiary-fixed text-on-tertiary-fixed px-4 py-1 rounded-full font-label-sm text-label-sm">THE SOLUTION</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">CEO Cafe: 纯净提神，深度养护</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+<div class="space-y-3">
+<div class="w-12 h-12 flex items-center justify-center rounded-xl bg-tertiary-container/10">
+<span class="material-symbols-outlined text-on-tertiary-container" data-icon="eco">eco</span>
+</div>
+<h4 class="font-label-bold text-label-bold text-primary">顶级灵芝注入</h4>
+<p class="text-on-surface-variant text-body-md">采用 100% 勇健极品灵芝，护肝、排毒、调节免疫。</p>
+</div>
+<div class="space-y-3">
+<div class="w-12 h-12 flex items-center justify-center rounded-xl bg-tertiary-container/10">
+<span class="material-symbols-outlined text-on-tertiary-container" data-icon="nutrition">nutrition</span>
+</div>
+<h4 class="font-label-bold text-label-bold text-primary">椰子油奶精</h4>
+<p class="text-on-surface-variant text-body-md">拒绝低廉植脂末，使用更健康的植物油脂。</p>
+</div>
+<div class="space-y-3">
+<div class="w-12 h-12 flex items-center justify-center rounded-xl bg-tertiary-container/10">
+<span class="material-symbols-outlined text-on-tertiary-container" data-icon="health_and_safety">health_and_safety</span>
+</div>
+<h4 class="font-label-bold text-label-bold text-primary">不伤胃、不心悸</h4>
+<p class="text-on-surface-variant text-body-md">咖啡因含量极低，肠胃敏感者也能安心享用。</p>
+</div>
+<div class="space-y-3">
+<div class="w-12 h-12 flex items-center justify-center rounded-xl bg-tertiary-container/10">
+<span class="material-symbols-outlined text-on-tertiary-container" data-icon="workspace_premium">workspace_premium</span>
+</div>
+<h4 class="font-label-bold text-label-bold text-primary">总裁级口感</h4>
+<p class="text-on-surface-variant text-body-md">巴西顶级咖啡豆，口感顺滑、回甘。</p>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -inset-4 bg-secondary/5 rounded-3xl -rotate-2"></div>
+<img class="relative rounded-3xl ambient-shadow w-full" data-alt="A top-down artistic shot of a warm cup of coffee with elegant latte art, surrounded by raw coffee beans and dried Ganoderma (Lingzhi) mushrooms. The lighting is sophisticated, with sharp contrasts and high-end texture details. Clinical-premium lifestyle aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWDieTYc1kIVu2MsA1cIcWUv05VuXmfiA5jwxWBPtj8XJbfj_VrSvynVGWjBuWAuQQ8uk1_36V_rqr0z1id_Y9_Q8qrA3QH7lhW45_NpOedDqXaxLeG4naxh6BvTs2h0hx2BjVEATORHEvp4kL0eLfvhAhnlvO5PlkpZLgRkhkYVXRyHSTOcA1I7s7LxxIXwbhj6LKKQJ8anX9CVJ0_FtSF7EouNp4k9wXAK3I5-LkwBO-sSrRkd8ZgO2Ji0wuROi8xtPvFqeIsjfG"/>
+</div>
+</div>
+</section>
+<!-- Irresistible Offer Section -->
+<section class="py-24 bg-surface-container-low" id="pricing">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="bg-white rounded-3xl overflow-hidden shadow-2xl border border-outline-variant/30 grid grid-cols-1 lg:grid-cols-5">
+<div class="lg:col-span-3 p-12 space-y-8">
+<div class="space-y-2">
+<h2 class="font-headline-xl text-headline-xl text-primary">投资健康，今天只需不到一半的价格！</h2>
+<p class="text-on-surface-variant text-body-lg">“这不只是一盒咖啡，这是你的私人健康管家...”</p>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-background rounded-xl">
+<span class="text-body-md">CEO 咖啡 (Box A)</span>
+<span class="font-label-bold">RM99</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-tertiary-fixed text-on-tertiary-fixed rounded-xl font-bold">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined" data-icon="add_circle">add_circle</span> CEO 咖啡 (Box B)</span>
+<span>FREE</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-secondary-fixed text-on-secondary-fixed rounded-xl font-bold">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span> 1对1 专业医生体检报告解读服务</span>
+<span>FREE</span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-6 items-center">
+<div class="text-center sm:text-left">
+<div class="text-on-surface-variant line-through text-body-md">原价 RM298</div>
+<div class="text-secondary text-5xl font-bold">RM99</div>
+</div>
+<div class="bg-error text-white px-6 py-2 rounded-lg text-headline-md font-bold animate-pulse">
+                                SAVE RM199!
+                            </div>
+</div>
+</div>
+<div class="lg:col-span-2 bg-primary p-12 text-white flex flex-col justify-center space-y-8">
+<p class="text-headline-md font-headline-md italic leading-relaxed">
+                            “我们请专业医生为你解读体检报告，让你喝得明白，活得健康。”
+                        </p>
+<div class="space-y-4">
+<a class="w-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white py-5 rounded-xl font-bold text-xl hover:scale-105 transition-transform flex items-center justify-center" href="https://wa.link/cpn7fy" target="_blank">
+                                立即领取优惠包
+                            </a>
+<p class="text-center text-label-sm text-outline-variant">限量 50 组，送完即止</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Authority & Trust Section -->
+<section class="py-24 bg-white" id="science">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div class="order-2 md:order-1">
+<img class="rounded-3xl shadow-xl" data-alt="A warm, professional scene of a doctor in a modern office, explaining a medical report on a tablet to a mature patient. The lighting is bright and reassuring, using clinical white and warm wood tones. High-trust medical authority imagery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSFoPZIpz1Jgrk1Kcg7ny7iDkjipQeMz3Vi60PXu3jD-OcJxXAsiypkyhEB7G_0Q204_gs3PQ6DPbr92yTBwUMBk8XAE1u1D296QzwDMRTTezgYag1bsQh2eI8OyaWpauqlPxZvFHnprYfRS5yjDy6fm9f0Dsepf5RviKgh3IU_vWEN8mOvPC74VYAwnFev8GFsIxgKZvrrRkNR2DCdfWQCp8AZtxbjDyC2RCxD41N-Cv4oQXz5tKvvA7qxYna2OxA_la97ICjbg-R"/>
+</div>
+<div class="space-y-6 order-1 md:order-2">
+<h2 class="font-headline-lg text-headline-lg text-primary">为什么我们要送你体检报告解读？</h2>
+<p class="text-body-lg text-on-surface-variant">
+                        因为我们懂你。很多人的体检报告只是数字，我们要告诉你背后的意义，并提供改善建议。
+                    </p>
+<div class="p-6 bg-surface-container rounded-2xl border-l-4 border-secondary">
+<p class="italic text-on-surface">“专业的咖啡只是载体，我们的目标是让每一位大马人都能通过科学的方式，管理自己的健康。”</p>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-24 bg-surface-bright" id="faq">
+<div class="max-w-3xl mx-auto px-margin-mobile">
+<h2 class="font-headline-lg text-headline-lg text-center mb-16">常见问题解答</h2>
+<div class="space-y-4">
+<details class="group bg-white rounded-xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
+<span>心悸的人可以喝吗？</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-body-md">可以。CEO咖啡采用低咖啡因配方，并加入灵芝调节神经系统，大多数心悸患者反馈体验良好。</p>
+</details>
+<details class="group bg-white rounded-xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
+<span>如何预约医生咨询？</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-body-md">下单后，我们的健康管家会通过WhatsApp联系您，安排一对一在线视频或语音咨询。</p>
+</details>
+<details class="group bg-white rounded-xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
+<span>正在服药期间可以喝吗？</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-body-md">建议与药物间隔2小时以上饮用，具体可咨询我们的在线医生。</p>
+</details>
+<details class="group bg-white rounded-xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
+<span>咖啡里含糖吗？</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-body-md">我们使用极少量的优质代糖，糖尿病人可在医生指导下适量饮用。</p>
+</details>
+<details class="group bg-white rounded-xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
+<span>有 Halal 认证吗？</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-body-md">是的，产品拥有JAKIM Halal认证及多项国际安全认证。</p>
+</details>
+<details class="group bg-white rounded-xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
+<span>CEO 咖啡有 Halal 认证吗？</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-body-md">有的。我们在马来西亚销售多年，拥有合法的认证，各族同胞都可以安心享用。</p>
+</details>
+<details class="group bg-white rounded-xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
+<span>一盒里面有多少包？每天建议喝多少？</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-body-md">每盒含有 20 小包。建议每天早上一包开始一天的活力，或者在下午茶时间替代那些高糖的奶茶。</p>
+</details>
+<details class="group bg-white rounded-xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
+<span>买一送一的优惠什么时候截止？</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-body-md">这是我们的“全民健康月”限时活动，仅限首 100 位下单的客户。一旦额满，价格将恢复到原价 RM198 且不再赠送医生咨询服务。</p>
+</details>
+<details class="group bg-white rounded-xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
+<span>为什么我应该选 CEO 咖啡，而不是超市买得到的 3 合 1？</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-body-md">市售 3 合 1 大多使用廉价植脂末（反式脂肪）。CEO 咖啡坚持使用更健康的植物油脂配方，并添加昂贵的勇健极品灵芝。你可以把它想象成“咖啡界的补品”，而不只是提神饮料。</p>
+</details>
+<details class="group bg-white rounded-xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
+<span>如果我喝了觉得不适合，可以退款吗？</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-body-md">我们对产品非常有信心！如果您收到货后对包装或品质有任何不满，请在 7 天内联系我们，我们会根据公司的退换货条例为您处理。</p>
+</details></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary-container dark:bg-primary py-16 text-on-primary-container">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="space-y-4">
+<div class="font-headline-md text-headline-md text-secondary-fixed">CEO Cafe</div>
+<p class="text-label-sm">© 2024 CEO Cafe Precision Ritual. All medical claims backed by clinical research.</p>
+</div>
+<div>
+<h5 class="font-label-bold text-secondary-fixed mb-4">Quick Links</h5>
+<ul class="space-y-2 text-label-sm">
+<li><a class="hover:text-secondary-fixed-dim" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-secondary-fixed-dim" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-bold text-secondary-fixed mb-4">Legal</h5>
+<ul class="space-y-2 text-label-sm">
+<li><a class="hover:text-secondary-fixed-dim" href="#">Medical Disclaimer</a></li>
+<li><a class="hover:text-secondary-fixed-dim" href="#">Contact Expert</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-bold text-secondary-fixed mb-4">Support</h5>
+<div class="flex gap-4">
+<a class="hover:text-secondary-fixed-dim transition-colors" href="https://wa.link/cpn7fy" target="_blank">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+</a>
+<a class="hover:text-secondary-fixed-dim transition-colors" href="https://wa.link/cpn7fy" target="_blank">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
