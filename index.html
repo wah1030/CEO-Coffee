@@ -109,7 +109,6 @@
             box-shadow: 0 4px 20px rgba(62, 39, 35, 0.08);
         }
         
-        /* Floating Animation */
         @keyframes floating {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -119,7 +118,6 @@
             animation: floating 3s ease-in-out infinite;
         }
 
-        /* Entrance and Scroll Reveal Base Styles */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -130,7 +128,6 @@
             transform: translateY(0);
         }
 
-        /* Button Hover Enhancements */
         .btn-hover-effect {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -139,7 +136,6 @@
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
 
-        /* FAQ Accordion Transition */
         details[open] summary ~ * {
             animation: sweep .3s ease-in-out;
         }
@@ -148,7 +144,6 @@
             100%  {opacity: 1; margin-top: 1rem}
         }
 
-        /* Progress Bar */
         #progress-bar {
             height: 3px;
             background: linear-gradient(to right, #D4AF37, #B8860B);
@@ -160,7 +155,20 @@
             transition: width 0.1s ease-out;
         }
 
-        /* Respect Reduced Motion */
+        #mobile-menu.hidden {
+            display: none;
+        }
+        
+        #mobile-menu:not(.hidden) {
+            display: flex;
+            animation: slideInDown 0.3s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             .reveal, .animate-floating, .btn-hover-effect, #progress-bar {
                 transition: none !important;
@@ -175,62 +183,77 @@
 <!-- Progress Bar -->
 <div id="progress-bar"></div>
 <!-- TopNavBar -->
-<header class="bg-surface/90 backdrop-blur-md border-b border-outline-variant/30 shadow-sm docked full-width top-0 sticky z-50">
-<nav class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<header class="bg-surface/90 backdrop-blur-md border-b border-outline-variant/30 shadow-sm fixed top-0 left-0 right-0 z-50">
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
 <div class="font-headline-md text-headline-md font-bold text-primary">CEO Cafe</div>
+<!-- Desktop Nav -->
 <div class="hidden md:flex gap-8 items-center">
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-bold text-label-bold" href="#benefits">Benefits</a>
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-bold text-label-bold" href="#science">The Science</a>
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-bold text-label-bold" href="#pricing">Pricing</a>
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-bold text-label-bold" href="#faq">FAQ</a>
+<a class="bg-secondary text-white px-8 py-3 rounded-full font-label-bold text-label-bold btn-hover-effect" href="#pricing">Order Now</a>
 </div>
-<a class="bg-secondary text-white px-8 py-3 rounded-full font-label-bold text-label-bold btn-hover-effect" href="#pricing" target="_blank">Order Now</a>
+<!-- Mobile Menu Toggle -->
+<button aria-label="Toggle Menu" class="md:hidden text-primary p-2 focus:outline-none" id="menu-toggle">
+<span class="material-symbols-outlined text-3xl" data-icon="menu">menu</span>
+</button>
 </nav>
+<!-- Mobile Menu Overlay -->
+<div class="hidden absolute top-20 left-0 w-full bg-surface border-b border-outline-variant shadow-xl flex-col p-6 space-y-4 md:hidden z-40" id="mobile-menu">
+<a class="text-on-surface-variant py-2 font-label-bold border-b border-outline-variant/20" href="#benefits">Benefits</a>
+<a class="text-on-surface-variant py-2 font-label-bold border-b border-outline-variant/20" href="#science">The Science</a>
+<a class="text-on-surface-variant py-2 font-label-bold border-b border-outline-variant/20" href="#pricing">Pricing</a>
+<a class="text-on-surface-variant py-2 font-label-bold border-b border-outline-variant/20" href="#faq">FAQ</a>
+<a class="bg-secondary text-white px-6 py-4 rounded-xl font-label-bold text-center btn-hover-effect" href="#pricing">Order Now</a>
+</div>
 </header>
-<main>
+<main class="pt-20">
 <!-- Hero Section -->
-<section class="relative min-h-[819px] flex items-center overflow-hidden bg-surface-bright py-20 px-margin-mobile md:px-margin-desktop">
-<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-<div class="space-y-8 z-10 reveal" style="transition-delay: 100ms;">
-<h1 class="font-headline-xl text-headline-xl text-primary leading-tight">别让这一杯 3-in-1，<br/><span class="text-secondary">偷偷透支你的健康！</span></h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
-                        专为大马咖啡爱好者打造。保留你最爱的香醇口感，剔除有害负担。加入勇健极品灵芝，让你在提神的同时，给身体多一层保护。
-                    </p>
-<div class="pt-4">
-<a class="cta-glow inline-flex items-center gap-3 bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white px-10 py-5 rounded-full font-label-bold text-label-bold text-lg btn-hover-effect" href="https://wa.link/cpn7fy" target="_blank">
-                            【买一送一】立即领取我的健康咖啡组合
-                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+<section class="relative min-h-[auto] md:min-h-[800px] flex items-center overflow-hidden bg-surface-bright py-12 md:py-20 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+<div class="space-y-6 md:space-y-8 z-10 reveal" id="hero-text">
+<h1 class="font-headline-lg-mobile md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary leading-tight">
+                    别让这一杯 3-in-1，<br/><span class="text-secondary">偷偷透支你的健康！</span>
+</h1>
+<p class="font-body-md md:font-body-lg text-body-md md:text-body-lg text-on-surface-variant max-w-xl">
+                    专为大马咖啡爱好者打造。保留你最爱的香醇口感，剔除有害负担。加入勇健极品灵芝，让你在提神的同时，给身体多一层保护。
+                </p>
+<div class="pt-2 md:pt-4">
+<a class="cta-glow w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-label-bold text-base md:text-lg btn-hover-effect" href="https://wa.link/cpn7fy" target="_blank">
+                        【买一送一】立即领取我的健康咖啡组合
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
 </a>
 </div>
 </div>
-<div class="grid grid-cols-2 gap-4 relative reveal" style="transition-delay: 300ms;">
+<div class="grid grid-cols-2 gap-4 relative reveal mt-8 md:mt-0" id="hero-images">
 <div class="rounded-2xl overflow-hidden aspect-[4/5] ambient-shadow animate-floating">
-<img class="w-full h-full object-cover" data-alt="SBD Academy Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1KZDqYjsFZmcPkH0BzxDi73ihyM-bArVIzX8IFVOeuXNuL2CqNVPgn4oCWeKCNkJVL6GmjCFMZvqAr8O0moHjbXo489uK01NpKe0tbX9L0D1K5JDjlSJYv-La9AXDb649kuFgXCA8RDKZkDyt-EY3LzNrFZ8pGBBePE0MbeMFx8irhd-Iy0Cdt98fJS1CnqDw0YW6Wd8bWIH_SDZqG8q_bR74pTeh7tKpeuLWDUdDvmYyTVXiFccKy1gs6tLa3nIx8VLVs51N-aPk"/>
+<img alt="SBD Academy Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoeHI3Ljx-sc7KGwJAHIDuEKGpcBuGomIBYDYPMC5t6gFqDC4KNyj7J_uSIMcYmMTuQexqF3mjCpmRrBGaFB_0_EQwvQFP3w01hIL2FeQ_qbyo4-OaELN0qQq5bRKlR4RodMoKjFRdDT4xcc_KGxZAX2DI7VbCzdIX5Fk2GUMYUukeaVugiY71ztNrBrNRtjAYmn79ZDtgmseLswvJHGwgMndab1xyH7Pb_8pJMvnAzIBnEQFJhPGjj1ONkU_IKQ6NlQJEAE3PA92Q"/>
 </div>
-<div class="rounded-2xl overflow-hidden aspect-[4/5] ambient-shadow mt-12 animate-floating" style="animation-delay: 0.5s;">
+<div class="rounded-2xl overflow-hidden aspect-[4/5] ambient-shadow mt-8 md:mt-12 animate-floating" style="animation-delay: 0.5s;">
 <img alt="Sandy - 理财教育助教" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3lVXmxXL8abLcEF-FY7dGUDJL43COAorirRIF8W3HKrSEw4jAw37Umk1BsqUj0hiyWjVsbm47KI_E0TTImLFefnY8L15dDvgAT9Ks0h3NpxvzW9P-LsJeX7E0TGY2hNxIp3wsqZqTMJ7O42bXiEgZU3zkAqw9gF_8SeUAkSHfaHXQmzkQoZJK6kUkKuH6K0AK5ZrHl8gT0tN9mVy2rdYHXWmWib2jFLco3QhuEqBKy2ewt5su2Z3UYJk6sxIf85DxJM303xe6Ljtt"/>
 </div>
 </div>
 </div>
 </section>
 <!-- Pain Points Section -->
-<section class="py-24 bg-primary text-white reveal-section" id="pain-points">
-<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center mb-16">
-<h2 class="font-headline-lg text-headline-lg mb-6">你喝的是提神，还是“慢性隐患”？</h2>
-<div class="w-24 h-1 bg-secondary-fixed mx-auto"></div>
+<section class="py-16 md:py-24 bg-primary text-white reveal-section" id="pain-points">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center mb-12 md:mb-16">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-6">你喝的是提神，还是“慢性隐患”？</h2>
+<div class="w-16 md:w-24 h-1 bg-secondary-fixed mx-auto"></div>
 </div>
-<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<div class="bg-primary-container p-10 rounded-2xl border border-outline/20 space-y-4 hover:border-secondary transition-colors duration-300">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-gutter">
+<div class="bg-primary-container p-8 md:p-10 rounded-2xl border border-outline/20 space-y-4 hover:border-secondary transition-colors duration-300">
 <span class="material-symbols-outlined text-error text-4xl" data-icon="dangerous">dangerous</span>
 <h3 class="font-headline-md text-headline-md text-secondary-fixed">❌ 传统 3 合 1</h3>
 <p class="text-on-primary-container/80 text-body-md">充满了反式脂肪（植脂末）和劣质糖分，长期喝会导致三高。</p>
 </div>
-<div class="bg-primary-container p-10 rounded-2xl border border-outline/20 space-y-4 hover:border-secondary transition-colors duration-300">
+<div class="bg-primary-container p-8 md:p-10 rounded-2xl border border-outline/20 space-y-4 hover:border-secondary transition-colors duration-300">
 <span class="material-symbols-outlined text-error text-4xl" data-icon="monitor_heart">monitor_heart</span>
 <h3 class="font-headline-md text-headline-md text-secondary-fixed">❌ 心悸手抖</h3>
 <p class="text-on-primary-container/80 text-body-md">很多普通咖啡喝完后心跳加速，晚上睡不着。</p>
 </div>
-<div class="bg-primary-container p-10 rounded-2xl border border-outline/20 space-y-4 hover:border-secondary transition-colors duration-300">
+<div class="bg-primary-container p-8 md:p-10 rounded-2xl border border-outline/20 space-y-4 hover:border-secondary transition-colors duration-300">
 <span class="material-symbols-outlined text-error text-4xl" data-icon="battery_alert">battery_alert</span>
 <h3 class="font-headline-md text-headline-md text-secondary-fixed">❌ 空有咖啡因</h3>
 <p class="text-on-primary-container/80 text-body-md">只是短暂刺激神经，却没给身体提供能量。</p>
@@ -238,12 +261,12 @@
 </div>
 </section>
 <!-- Solution Section -->
-<section class="py-24 bg-white reveal-section" id="benefits">
-<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-<div class="space-y-8">
+<section class="py-16 md:py-24 bg-white reveal-section" id="benefits">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
+<div class="space-y-6 md:space-y-8">
 <div class="inline-block bg-tertiary-fixed text-on-tertiary-fixed px-4 py-1 rounded-full font-label-sm text-label-sm">THE SOLUTION</div>
-<h2 class="font-headline-lg text-headline-lg text-primary">CEO Cafe: 纯净提神，深度养护</h2>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">CEO Cafe: 纯净提神，深度养护</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
 <div class="space-y-3 group">
 <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-tertiary-container/10 group-hover:bg-tertiary-container transition-colors duration-300">
 <span class="material-symbols-outlined text-on-tertiary-container group-hover:text-white" data-icon="eco">eco</span>
@@ -274,67 +297,68 @@
 </div>
 </div>
 </div>
-<div class="relative group">
-<div class="absolute -inset-4 bg-secondary/5 rounded-3xl -rotate-2 group-hover:rotate-0 transition-transform duration-500"></div>
-<img class="relative rounded-3xl ambient-shadow w-full transition-transform duration-500 group-hover:scale-[1.02]" data-alt="A top-down artistic shot of a warm cup of coffee with elegant latte art, surrounded by raw coffee beans and dried Ganoderma (Lingzhi) mushrooms." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWDieTYc1kIVu2MsA1cIcWUv05VuXmfiA5jwxWBPtj8XJbfj_VrSvynVGWjBuWAuQQ8uk1_36V_rqr0z1id_Y9_Q8qrA3QH7lhW45_NpOedDqXaxLeG4naxh6BvTs2h0hx2BjVEATORHEvp4kL0eLfvhAhnlvO5PlkpZLgRkhkYVXRyHSTOcA1I7s7LxxIXwbhj6LKKQJ8anX9CVJ0_FtSF7EouNp4k9wXAK3I5-LkwBO-sSrRkd8ZgO2Ji0wuROi8xtPvFqeIsjfG"/>
+<div class="relative group mt-8 lg:mt-0">
+<div class="absolute -inset-4 bg-secondary/5 rounded-3xl -rotate-2 group-hover:rotate-0 transition-transform duration-500 hidden md:block"></div>
+<img alt="Elegant coffee setting with Lingzhi" class="relative rounded-3xl ambient-shadow w-full transition-transform duration-500 group-hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWDieTYc1kIVu2MsA1cIcWUv05VuXmfiA5jwxWBPtj8XJbfj_VrSvynVGWjBuWAuQQ8uk1_36V_rqr0z1id_Y9_Q8qrA3QH7lhW45_NpOedDqXaxLeG4naxh6BvTs2h0hx2BjVEATORHEvp4kL0eLfvhAhnlvO5PlkpZLgRkhkYVXRyHSTOcA1I7s7LxxIXwbhj6LKKQJ8anX9CVJ0_FtSF7EouNp4k9wXAK3I5-LkwBO-sSrRkd8ZgO2Ji0wuROi8xtPvFqeIsjfG"/>
 </div>
 </div>
-</section><section class="py-24 bg-primary-container text-white reveal-section" id="video">
+</section>
+<!-- Video Section -->
+<section class="py-16 md:py-24 bg-primary-container text-white reveal-section" id="video">
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center">
-<div class="mb-12 space-y-4">
-<h2 class="font-headline-lg text-headline-lg text-secondary-fixed">深度了解 CEO 咖啡的健康奥秘</h2>
-<p class="font-body-lg text-body-lg text-on-primary-container/80">观看视频，探索灵芝与咖啡的完美融合</p>
-<div class="w-24 h-1 bg-secondary-fixed mx-auto"></div>
+<div class="mb-10 md:mb-12 space-y-4">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-secondary-fixed">深度了解 CEO 咖啡的健康奥秘</h2>
+<p class="font-body-md md:font-body-lg text-body-md md:text-body-lg text-on-primary-container/80">观看视频，探索灵芝与咖啡的完美融合</p>
+<div class="w-20 md:w-24 h-1 bg-secondary-fixed mx-auto"></div>
 </div>
 <div class="max-w-4xl mx-auto">
-<div class="relative aspect-video rounded-3xl overflow-hidden ambient-shadow border border-outline/20">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class="absolute inset-0 w-full h-full" frameborder="0" src="https://www.youtube.com/embed/NMRJIz5duIM" title="YouTube video player" referrerpolicy="strict-origin-when-cross-origin">
-</iframe>
+<div class="relative aspect-video rounded-2xl md:rounded-3xl overflow-hidden ambient-shadow border border-outline/20 bg-black">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class="w-full h-full" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/NMRJIz5duIM" title="YouTube video player"></iframe>
 </div>
 </div>
 </div>
 </section>
 <!-- Irresistible Offer Section -->
-<section class="py-24 bg-surface-container-low reveal-section" id="pricing">
+<section class="py-16 md:py-24 bg-surface-container-low reveal-section" id="pricing">
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-<div class="bg-white rounded-3xl overflow-hidden shadow-2xl border border-outline-variant/30 grid grid-cols-1 lg:grid-cols-5">
-<div class="lg:col-span-3 p-12 space-y-8">
-<div class="space-y-2">
-<h2 class="font-headline-xl text-headline-xl text-primary">投资健康，今天只需不到一半的价格！</h2>
-<p class="text-on-surface-variant text-body-lg">“这不只是一盒咖啡，这是你的私人健康管家...”</p>
+<div class="bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-outline-variant/30 grid grid-cols-1 lg:grid-cols-5">
+<div class="lg:col-span-3 p-8 md:p-12 space-y-6 md:space-y-8">
+<div class="space-y-3">
+<h2 class="font-headline-lg-mobile md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary leading-tight">投资健康，今天只需不到一半的价格！</h2>
+<p class="text-on-surface-variant text-body-md md:text-body-lg">“这不只是一盒咖啡，这是你的私人健康管家...”</p>
 </div>
-<div class="space-y-4">
-<div class="flex items-center justify-between p-4 bg-background rounded-xl">
+<div class="space-y-3 md:space-y-4">
+<div class="flex items-center justify-between p-4 bg-background rounded-xl border border-outline-variant/30">
 <span class="text-body-md">CEO 咖啡 (Box A)</span>
 <span class="font-label-bold">RM99</span>
 </div>
 <div class="flex items-center justify-between p-4 bg-tertiary-fixed text-on-tertiary-fixed rounded-xl font-bold">
 <span class="flex items-center gap-2"><span class="material-symbols-outlined" data-icon="add_circle">add_circle</span> CEO 咖啡 (Box B)</span>
-<span class="">FREE</span>
+<span>FREE</span>
 </div>
 <div class="flex items-center justify-between p-4 bg-secondary-fixed text-on-secondary-fixed rounded-xl font-bold">
-<span class="flex items-center gap-2"><span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span> 1对1 专业医生体检报告解读服务</span>
-<span class="">FREE</span>
+<span class="flex items-center gap-2 text-left"><span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span> 1对1 专业医生解读服务</span>
+<span>FREE</span>
 </div>
 </div>
-<div class="flex flex-col sm:flex-row gap-6 items-center">
+<div class="flex flex-col sm:flex-row gap-6 items-center pt-4">
 <div class="text-center sm:text-left">
 <div class="text-on-surface-variant line-through text-body-md">原价 RM298</div>
-<div class="text-secondary text-5xl font-bold">RM99</div>
+<div class="text-secondary text-4xl md:text-5xl font-bold">RM99</div>
 </div>
 <div class="bg-error text-white px-6 py-2 rounded-lg text-headline-md font-bold animate-pulse">
-                                SAVE RM199!
-                            </div>
+                            SAVE RM199!
+                        </div>
 </div>
 </div>
-<div class="lg:col-span-2 bg-primary p-12 text-white flex flex-col justify-center space-y-8">
-<p class="text-headline-md font-headline-md italic leading-relaxed">
-                            “我们请专业医生为你解读体检报告，让你喝得明白，活得健康。”
-                        </p>
+<div class="lg:col-span-2 bg-primary p-8 md:p-12 text-white flex flex-col justify-center space-y-6 md:space-y-8">
+<p class="text-headline-md font-headline-md italic leading-relaxed text-center lg:text-left">
+                        “我们请专业医生为你解读体检报告，让你喝得明白，活得健康。”
+                    </p>
 <div class="space-y-4">
-<a class="w-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white py-5 rounded-xl font-bold text-xl btn-hover-effect flex items-center justify-center" href="https://wa.link/cpn7fy" target="_blank">
-                                立即领取优惠包
-                            </a>
+<a class="w-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white py-5 rounded-xl font-bold text-lg md:text-xl btn-hover-effect flex items-center justify-center shadow-lg" href="https://wa.link/cpn7fy" target="_blank">
+                            立即领取优惠包
+                        </a>
 <p class="text-center text-label-sm text-outline-variant">限量 50 组，送完即止</p>
 </div>
 </div>
@@ -342,58 +366,58 @@
 </div>
 </section>
 <!-- Authority & Trust Section -->
-<section class="py-24 bg-white reveal-section" id="science">
-<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<section class="py-16 md:py-24 bg-white reveal-section" id="science">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
 <div class="order-2 md:order-1">
-<img class="rounded-3xl shadow-xl hover:scale-[1.02] transition-transform duration-500" data-alt="A warm, professional scene of a doctor explaining a medical report." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSFoPZIpz1Jgrk1Kcg7ny7iDkjipQeMz3Vi60PXu3jD-OcJxXAsiypkyhEB7G_0Q204_gs3PQ6DPbr92yTBwUMBk8XAE1u1D296QzwDMRTTezgYag1bsQh2eI8OyaWpauqlPxZvFHnprYfRS5yjDy6fm9f0Dsepf5RviKgh3IU_vWEN8mOvPC74VYAwnFev8GFsIxgKZvrrRkNR2DCdfWQCp8AZtxbjDyC2RCxD41N-Cv4oQXz5tKvvA7qxYna2OxA_la97ICjbg-R"/>
+<img alt="Professional consultation scene" class="rounded-2xl md:rounded-3xl shadow-xl hover:scale-[1.02] transition-transform duration-500 w-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSFoPZIpz1Jgrk1Kcg7ny7iDkjipQeMz3Vi60PXu3jD-OcJxXAsiypkyhEB7G_0Q204_gs3PQ6DPbr92yTBwUMBk8XAE1u1D296QzwDMRTTezgYag1bsQh2eI8OyaWpauqlPxZvFHnprYfRS5yjDy6fm9f0Dsepf5RviKgh3IU_vWEN8mOvPC74VYAwnFev8GFsIxgKZvrrRkNR2DCdfWQCp8AZtxbjDyC2RCxD41N-Cv4oQXz5tKvvA7qxYna2OxA_la97ICjbg-R"/>
 </div>
 <div class="space-y-6 order-1 md:order-2">
-<h2 class="font-headline-lg text-headline-lg text-primary">为什么我们要送你体检报告解读？</h2>
-<p class="text-body-lg text-on-surface-variant">
-                        因为我们懂你。很多人的体检报告只是数字，我们要告诉你背后的意义，并提供改善建议。
-                    </p>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">为什么我们要送你体检报告解读？</h2>
+<p class="text-body-md md:text-body-lg text-on-surface-variant">
+                    因为我们懂你。很多人的体检报告只是数字，我们要告诉你背后的意义，并提供改善建议。
+                </p>
 <div class="p-6 bg-surface-container rounded-2xl border-l-4 border-secondary shadow-sm hover:shadow-md transition-shadow">
-<p class="italic text-on-surface">“专业的咖啡只是载体，我们的目标是让每一位大马人都能通过科学的方式，管理自己的健康。”</p>
+<p class="italic text-on-surface text-body-md md:text-body-lg">“专业的咖啡只是载体，我们的目标是让每一位大马人都能通过科学的方式，管理自己的健康。”</p>
 </div>
 </div>
 </div>
 </section>
 <!-- FAQ Section -->
-<section class="py-24 bg-surface-bright reveal-section" id="faq">
+<section class="py-16 md:py-24 bg-surface-bright reveal-section" id="faq">
 <div class="max-w-3xl mx-auto px-margin-mobile">
-<h2 class="font-headline-lg text-headline-lg text-center mb-16">常见问题解答</h2>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-center mb-10 md:mb-16">常见问题解答</h2>
 <div class="space-y-4">
-<details class="group bg-white rounded-xl ambient-shadow p-6 transition-all duration-300">
+<details class="group bg-white rounded-xl ambient-shadow p-5 md:p-6 transition-all duration-300">
 <summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
-<span class="">心悸的人可以喝吗？</span>
+<span>心悸的人可以喝吗？</span>
 <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
 <p class="mt-4 text-on-surface-variant text-body-md border-t border-outline-variant/30 pt-4">可以。CEO咖啡采用低咖啡因配方，并加入灵芝调节神经系统，大多数心悸患者反馈体验良好。</p>
 </details>
-<details class="group bg-white rounded-xl ambient-shadow p-6 transition-all duration-300">
+<details class="group bg-white rounded-xl ambient-shadow p-5 md:p-6 transition-all duration-300">
 <summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
-<span class="">如何预约医生咨询？</span>
+<span>如何预约医生咨询？</span>
 <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
 <p class="mt-4 text-on-surface-variant text-body-md border-t border-outline-variant/30 pt-4">下单后，我们的健康管家会通过WhatsApp联系您，安排一对一在线视频或语音咨询。</p>
 </details>
-<details class="group bg-white rounded-xl ambient-shadow p-6 transition-all duration-300">
+<details class="group bg-white rounded-xl ambient-shadow p-5 md:p-6 transition-all duration-300">
 <summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
-<span class="">正在服药期间可以喝吗？</span>
+<span>正在服药期间可以喝吗？</span>
 <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
 <p class="mt-4 text-on-surface-variant text-body-md border-t border-outline-variant/30 pt-4">建议与药物间隔2小时以上饮用，具体可咨询我们的在线医生。</p>
 </details>
-<details class="group bg-white rounded-xl ambient-shadow p-6 transition-all duration-300">
+<details class="group bg-white rounded-xl ambient-shadow p-5 md:p-6 transition-all duration-300">
 <summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
-<span class="">咖啡里含糖吗？</span>
+<span>咖啡里含糖吗？</span>
 <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
 <p class="mt-4 text-on-surface-variant text-body-md border-t border-outline-variant/30 pt-4">我们使用极少量的优质代糖，糖尿病人可在医生指导下适量饮用。</p>
 </details>
-<details class="group bg-white rounded-xl ambient-shadow p-6 transition-all duration-300">
+<details class="group bg-white rounded-xl ambient-shadow p-5 md:p-6 transition-all duration-300">
 <summary class="flex justify-between items-center cursor-pointer list-none font-label-bold text-primary">
-<span class="">有 Halal 认证吗？</span>
+<span>有 Halal 认证吗？</span>
 <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
 <p class="mt-4 text-on-surface-variant text-body-md border-t border-outline-variant/30 pt-4">是的，产品拥有JAKIM Halal认证及多项国际安全认证。</p>
@@ -401,121 +425,150 @@
 </div>
 </div>
 </section>
-<section class="py-24 bg-white reveal-section" id="contact-form">
+<!-- Contact Form Section -->
+<section class="py-16 md:py-24 bg-white reveal-section" id="contact-form">
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-<div class="text-center mb-12">
-<h2 class="font-headline-lg text-headline-lg text-primary">如有其他疑问，欢迎留言</h2>
+<div class="text-center mb-10 md:mb-12">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">如有其他疑问，欢迎留言</h2>
 </div>
-<div class="w-full">
-<iframe frameborder="0" height="500" loading="lazy" marginheight="0" marginwidth="0" src="https://tally.so/embed/aQKobb?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" title="Contact Form" width="100%"></iframe>
+<div class="w-full bg-surface-container-low rounded-2xl overflow-hidden shadow-inner">
+<iframe frameborder="0" height="600" loading="lazy" marginheight="0" marginwidth="0" src="https://tally.so/embed/aQKobb?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" title="Contact Form" width="100%"></iframe>
 </div>
 </div>
 </section>
-<section class="py-24 bg-surface-container-low reveal-section" id="book-consultation">
+<!-- Calendly Section -->
+<section class="py-16 md:py-24 bg-surface-container-low reveal-section" id="book-consultation">
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-<div class="text-center mb-12">
-<h2 class="font-headline-lg text-headline-lg text-primary">预约您的 1对1 咨询</h2>
+<div class="text-center mb-10 md:mb-12">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">预约您的 1对1 咨询</h2>
 </div>
-<div class="w-full">
-<div class="calendly-inline-widget" data-url="https://calendly.com/wah1030/ceo-coffee" style="position: relative;min-width:320px;height:700px;"></div>
+<div class="w-full bg-white rounded-2xl shadow-xl overflow-hidden">
+<div class="calendly-inline-widget" data-processed="true" data-url="https://calendly.com/wah1030/ceo-coffee" style="position: relative; min-width:320px; height:700px;">
+<div class="calendly-spinner">
+<div class="calendly-bounce1"></div>
+<div class="calendly-bounce2"></div>
+<div class="calendly-bounce3"></div>
+</div>
+<iframe frameborder="0" height="100%" src="https://calendly.com/wah1030/ceo-coffee?embed_domain=&amp;embed_type=Inline" title="Select a Date &amp; Time - Calendly" width="100%"></iframe>
+</div>
 <script async="" src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
 </div>
 </div>
 </section>
 </main>
 <!-- Footer -->
-<footer class="bg-primary-container py-16 text-on-primary-container">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<footer class="bg-primary-container py-12 md:py-16 text-on-primary-container">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
 <div class="space-y-4">
 <div class="font-headline-md text-headline-md text-secondary-fixed">CEO Cafe</div>
-<p class="text-label-sm">© 2024 CEO Cafe Precision Ritual. All medical claims backed by clinical research.</p>
+<p class="text-label-sm leading-relaxed">© 2024 CEO Cafe Precision Ritual. All medical claims backed by clinical research.</p>
 </div>
 <div>
 <h5 class="font-label-bold text-secondary-fixed mb-4">Quick Links</h5>
-<ul class="space-y-2 text-label-sm">
+<ul class="space-y-3 text-label-sm">
+<li><a class="hover:text-secondary-fixed-dim transition-colors" href="#benefits">Benefits</a></li>
+<li><a class="hover:text-secondary-fixed-dim transition-colors" href="#pricing">Pricing</a></li>
 <li><a class="hover:text-secondary-fixed-dim transition-colors" href="#">Privacy Policy</a></li>
-<li><a class="hover:text-secondary-fixed-dim transition-colors" href="#">Terms of Service</a></li>
 </ul>
 </div>
 <div>
 <h5 class="font-label-bold text-secondary-fixed mb-4">Legal</h5>
-<ul class="space-y-2 text-label-sm">
+<ul class="space-y-3 text-label-sm">
 <li><a class="hover:text-secondary-fixed-dim transition-colors" href="#">Medical Disclaimer</a></li>
-<li><a class="hover:text-secondary-fixed-dim transition-colors" href="#">Contact Expert</a></li>
+<li><a class="hover:text-secondary-fixed-dim transition-colors" href="#">Terms of Service</a></li>
 </ul>
 </div>
 <div>
 <h5 class="font-label-bold text-secondary-fixed mb-4">Support</h5>
-<div class="flex gap-4">
-<a class="hover:text-secondary-fixed-dim transition-all hover:scale-110" href="https://wa.link/cpn7fy" target="_blank">
+<div class="flex gap-6">
+<a class="hover:text-secondary-fixed-dim transition-all hover:scale-110 flex flex-col items-center gap-1" href="https://wa.link/cpn7fy" target="_blank">
 <span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span class="text-[10px] uppercase">Chat</span>
 </a>
-<a class="hover:text-secondary-fixed-dim transition-all hover:scale-110" href="https://wa.link/cpn7fy" target="_blank">
+<a class="hover:text-secondary-fixed-dim transition-all hover:scale-110 flex flex-col items-center gap-1" href="mailto:support@ceocafe.com">
 <span class="material-symbols-outlined" data-icon="mail">mail</span>
+<span class="text-[10px] uppercase">Email</span>
 </a>
 </div>
 </div>
 </div>
 </footer>
 <script>
-        // Progress Bar logic
-        window.onscroll = function() {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = (winScroll / height) * 100;
-            document.getElementById("progress-bar").style.width = scrolled + "%";
-        };
+    // Mobile Menu Toggle logic
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = menuToggle.querySelector('.material-symbols-outlined');
 
-        // Scroll Reveal logic
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        const isHidden = mobileMenu.classList.contains('hidden');
+        menuIcon.textContent = isHidden ? 'menu' : 'close';
+    });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
+    // Close menu when clicking links
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            menuIcon.textContent = 'menu';
+        });
+    });
 
-        // Add reveal classes to sections and hero elements
-        document.addEventListener('DOMContentLoaded', () => {
-            // Hero entrance
-            const heroElements = document.querySelectorAll('.reveal');
-            heroElements.forEach(el => el.classList.add('active'));
+    // Progress Bar logic
+    window.onscroll = function() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+    };
 
-            // Section reveals
-            const sections = document.querySelectorAll('.reveal-section');
-            sections.forEach(section => {
-                section.classList.add('reveal');
-                observer.observe(section);
-            });
+    // Scroll Reveal logic
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initial reveals for hero
+        const initialReveals = document.querySelectorAll('.reveal');
+        initialReveals.forEach((el, index) => {
+            setTimeout(() => el.classList.add('active'), index * 150);
         });
 
-        // FAQ Smooth Interactivity (using Web Animations API for height)
-        document.querySelectorAll('details').forEach((el) => {
-            const summary = el.querySelector('summary');
-            const content = el.querySelector('p');
+        // Section reveals
+        const sections = document.querySelectorAll('.reveal-section');
+        sections.forEach(section => {
+            section.classList.add('reveal');
+            observer.observe(section);
+        });
+    });
 
-            summary.addEventListener('click', (e) => {
-                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // FAQ Smooth Interactivity
+    document.querySelectorAll('details').forEach((el) => {
+        const summary = el.querySelector('summary');
+        
+        summary.addEventListener('click', (e) => {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            
+            if (el.open) {
+                e.preventDefault();
+                const animation = el.animate([
+                    { height: el.offsetHeight + 'px' },
+                    { height: summary.offsetHeight + 'px' }
+                ], { duration: 300, easing: 'ease-out' });
                 
-                if (el.open) {
-                    e.preventDefault();
-                    el.classList.add('closing');
-                    const animation = el.animate([
-                        { height: el.offsetHeight + 'px' },
-                        { height: summary.offsetHeight + 'px' }
-                    ], { duration: 300, easing: 'ease-out' });
-                    
-                    animation.onfinish = () => {
-                        el.open = false;
-                        el.classList.remove('closing');
-                    };
-                }
-            });
+                animation.onfinish = () => {
+                    el.open = false;
+                };
+            }
         });
-    </script>
+    });
+</script>
 </body></html>
